@@ -74,11 +74,13 @@ class JadpelModel extends Model
         return $builder->get()->getResult();
     }
 
-    function get_guru($id_ta, $id_mapel, $id_hari, $id_jampel, $id_kelas)
+    function get_guru($id_ta, $id_mapel, $id_hari, $id_jampel, $id_kelas, $cek)
     {
-        $query = 'SELECT guru.* FROM guru 
+        if ($cek->nama_mapel == 'Upacara Bendera' || $cek->nama_mapel == 'Jumat Bersih') {
+            $query = 'SELECT guru.* FROM guru 
                     LEFT JOIN jadpel on guru.id_guru = jadpel.id_guru 
                         AND jadpel.id_ta = ' . $id_ta . '
+                        AND jadpel.id_kelas = ' . $id_kelas . '
                         AND jadpel.id_hari = ' . $id_hari . '
                         AND jadpel.id_jampel= ' . $id_jampel . '
                         AND jadpel.id_mapel = ' . $id_mapel . '
@@ -91,6 +93,24 @@ class JadpelModel extends Model
                 WHERE jadpel.id_jadpel is null 
                     AND guru_sbk.id_guru is null 
                     AND guru.id_mapel = ' . $id_mapel;
+        } else {
+            $query = 'SELECT guru.* FROM guru 
+                        LEFT JOIN jadpel on guru.id_guru = jadpel.id_guru 
+                            AND jadpel.id_ta = ' . $id_ta . '
+                            AND jadpel.id_hari = ' . $id_hari . '
+                            AND jadpel.id_jampel= ' . $id_jampel . '
+                            AND jadpel.id_mapel = ' . $id_mapel . '
+                        LEFT JOIN (SELECT id_ta, id_kelas, id_hari, id_jampel, id_mapel, id_guru 
+                            FROM jadpel 
+                            WHERE id_ta = ' . $id_ta . ' AND id_kelas= ' . $id_kelas . ' AND id_hari = ' . $id_hari . ' AND id_jampel= ' . $id_jampel . ' AND id_mapel= ' . $id_mapel . '
+                            GROUP BY id_guru 
+                            HAVING COUNT(id_guru)>3) AS guru_sbk 
+                        ON guru_sbk.id_guru = guru.id_guru
+                    WHERE jadpel.id_jadpel is null 
+                        AND guru_sbk.id_guru is null 
+                        AND guru.id_mapel = ' . $id_mapel;
+        }
+
 
         $ex = $this->db->query($query);
         // var_dump();

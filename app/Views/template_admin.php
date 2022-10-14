@@ -164,16 +164,17 @@
                 dataType: 'json',
                 success: function(data) {
                     console.log(dataJson);
+                    console.log(data);
                     var html = '';
                     var i;
                     var old_guru = document.getElementById("old_guru");
                     var old_guru_nama = document.getElementById("old_guru_nama");
 
-                    $('#mapel').change(function() {
-                        let tester_data = document.getElementById("data_lama");
-                        tester_data.setAttribute("hidden", "hidden");
-                        html += '';
-                    });
+                    // $('#mapel').change(function() {
+                    //     let tester_data = document.getElementById("data_lama");
+                    //     tester_data.setAttribute("hidden", "hidden");
+                    //     html += '';
+                    // });
 
                     if (old_guru) {
                         html += '<option id="data_lama" value=' + old_guru.value + '>' + old_guru_nama.value + '</option>';

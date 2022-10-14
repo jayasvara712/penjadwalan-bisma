@@ -86,7 +86,10 @@ class Jadpel extends ResourcePresenter
         $id_kelas = $this->request->getPost('id_kelas');
         $id_hari = $this->request->getPost('id_hari');
         $id_jampel = $this->request->getPost('id_jampel');
-        $data = $this->jadpelModel->get_guru($id_ta, $id_mapel, $id_hari, $id_jampel, $id_kelas);
+
+        $cek = $this->mapelModel->select('nama_mapel')->where('id_mapel', $id_mapel)->first();
+
+        $data = $this->jadpelModel->get_guru($id_ta, $id_mapel, $id_hari, $id_jampel, $id_kelas, $cek);
         echo json_encode($data);
     }
 
@@ -118,37 +121,37 @@ class Jadpel extends ResourcePresenter
             'id_ta' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Pilih Tahun Ajaran !'
+                    'required' => 'Pilih Tahun Ajaran '
                 ]
             ],
             'id_kelas' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Pilih Kelas !'
+                    'required' => 'Pilih Kelas '
                 ]
             ],
             'id_hari' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Pilih Hari !'
+                    'required' => 'Pilih Hari '
                 ]
             ],
             'id_jampel' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Pilih Jam Pelajaran !'
+                    'required' => 'Pilih Jam Pelajaran '
                 ]
             ],
             'id_mapel' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Pilih Mata Pelajaran !'
+                    'required' => 'Pilih Mata Pelajaran '
                 ]
             ],
             'id_guru' => [
                 'rules' => 'required',
                 'errors' => [
-                    'required' => 'Pilih Guru !'
+                    'required' => 'Pilih Guru '
                 ]
             ],
 

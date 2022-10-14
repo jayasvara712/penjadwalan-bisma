@@ -27,6 +27,7 @@ $(document).ready(function(){
             icon: "success",
         });
     } else if (failElement) {
+        console.log(failElement);
         swal({
             text: failElement.innerHTML,
             icon: "error",

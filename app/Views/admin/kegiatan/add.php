@@ -55,7 +55,7 @@
                                 <label for="">
                                     Tanggal Kegiatan
                                 </label>
-                                <input type="date" name="tgl_post" class="form-control" value="<?php echo date('Y-m-d'); ?>" readonly>
+                                <input type="text" name="tgl_post" class="form-control" value="<?= date('Y-m-d'); ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
