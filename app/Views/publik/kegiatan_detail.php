@@ -13,10 +13,12 @@
                             <img src="<?= base_url() ?>/upload/galeri/<?= $kegiatan->foto ?>" alt="">
                         </div>
                     </div>
-                    <h1 class="post-title"><?= $kegiatan->judul ?></h1>
-                    <div class="post-date" style="font-weight: bold;">Posted on <?= date('d F Y', strtotime($kegiatan->tgl_post)) ?></div>
+                    <h1 class="post-title text-center"><?= $kegiatan->judul ?></h1>
+                    </br>
+                    <div class="post-date" style="font-weight: bold;">Diposting pada <?= date('d F Y', strtotime($kegiatan->tgl_post)) ?></div>
+                    </br>
                     <div class="post-content">
-                        <p>
+                        <p class="text-justify">
                             <?= $kegiatan->deskripsi ?>
                         </p>
                     </div>

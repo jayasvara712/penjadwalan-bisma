@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/frontend/assets/css/theme.css">
 
     <link rel="stylesheet" href="<?= base_url() ?>/assets/css/custom.css">
+    <link href="<?= base_url(); ?>/Tampilan/vendor/fontawesome-free/css/all.css" rel="stylesheet">
 
 </head>
 

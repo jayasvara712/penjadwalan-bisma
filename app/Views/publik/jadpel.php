@@ -19,11 +19,22 @@
                 Jadwal Mata Pelajaran Tahun Ajaran <?= $ta->ta ?>
             </h4>
 
-            <select name="id_kelas" id="kelasx" class="form-control">
-                <?php foreach ($kelas as $key => $value) : ?>
-                    <option value="<?= $value->id_kelas ?>"><?= $value->nama_kelas ?></option>
-                <?php endforeach ?>
-            </select>
+            <form action="cetak/print" class="d-inline" method="post">
+                <div class="row">
+                    <?= csrf_field() ?>
+                    <input type="hidden" name="id_ta" value="<?= $ta->id_ta ?>">
+                    <div class="col-lg-11">
+                        <select name="id_kelas" id="kelasx" class="form-control">
+                            <?php foreach ($kelas as $key => $value) : ?>
+                                <option value="<?= $value->id_kelas ?>"><?= $value->nama_kelas ?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="col-lg-1">
+                        <button class="btn btn-primary"><i class="fas fa-print"></i></button>
+                    </div>
+                </div>
+            </form>
             <br>
 
             <!-- table -->
@@ -50,7 +61,7 @@
                 </tr>
                 <?php foreach ($jampel as $key => $value) : ?>
                     <tr id="xjadpel<?= $value->nama_jam ?>" class="text-center">
-                        <td id="xjam"><?= $value->nama_jam ?></td>
+                        <td><?= $value->waktu_masuk ?> - <?= $value->waktu_selesai ?></td>
                         <td id="senin<?= $value->nama_jam ?>" class="harix"></td>
                         <td id="selasa<?= $value->nama_jam ?>" class="harix"></td>
                         <td id="rabu<?= $value->nama_jam ?>" class="harix"></td>
